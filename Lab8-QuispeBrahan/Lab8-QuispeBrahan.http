@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:5210
+
+### Ejercicio 1: ClientesConJuan
+GET {{baseUrl}}/api/clients/nombre
+Accept: application/json
+
+### Ejercicio 2: ProductosPorPrecio
+GET {{baseUrl}}/api/products/precio-mayor?precio=20
+Accept: application/json
+
+### Ejercicio 3: ProductosDelPedido1
+GET {{baseUrl}}/api/orderdetails/por-pedido/productos
+Accept: application/json
+
+### Ejercicio 4: CantidadDelPedido1
+GET {{baseUrl}}/api/orderdetails/por-pedido/cantidad-total
+Accept: application/json
+
+### Ejercicio 5: ProductoMasCaro
+GET {{baseUrl}}/api/products/mas-caro
+Accept: application/json
+
+### Ejercicio 6: PedidosDespuesDeMayo
+GET {{baseUrl}}/api/orders/despues-de
+Accept: application/json
+
+### Ejercicio 7: PrecioPromedio
+GET {{baseUrl}}/api/products/precio-promedio
+Accept: application/json
+
+### Ejercicio 8: ProductosSinDescripcion
+GET {{baseUrl}}/api/products/sin-descripcion
+Accept: application/json
+
+### Ejercicio 9: ClienteConMasPedidos
+GET {{baseUrl}}/api/clients/mayor-numero-pedidos
+Accept: application/json
+
+### Ejercicio 10: PedidosConDetalles
+GET {{baseUrl}}/api/orders/con-detalles
+Accept: application/json
+
+### Ejercicio 11: ProductosDelCliente1
+GET {{baseUrl}}/api/products/por-cliente
+Accept: application/json
+
+### Ejercicio 12: ClientesDelProducto2
+GET {{baseUrl}}/api/clients/por-producto
+Accept: application/json
