@@ -24,6 +24,12 @@ constructor.Services.AddScoped<IOrderDetailService, OrderDetailService>();
 
 var aplicacion = constructor.Build();
 
+using (var scope = aplicacion.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<Laboratorio8Context>();
+    db.Database.EnsureCreated();
+}
+
 if (aplicacion.Environment.IsDevelopment())
 {
     aplicacion.UseSwagger();

@@ -1,0 +1,43 @@
+name: Build and Deploy .NET Application
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '10.0.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore ./Lab8-QuispeBrahan.sln
+
+      - name: Build application
+        run: dotnet build ./Lab8-QuispeBrahan.sln --configuration Release --no-restore
+
+      - name: Publish application
+        run: dotnet publish ./Lab8-QuispeBrahan/Lab8-QuispeBrahan.csproj --configuration Release --output ./published
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: ./published
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Trigger Render deployment
+        run: curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
