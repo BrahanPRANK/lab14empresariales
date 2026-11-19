@@ -39,4 +39,10 @@ if (aplicacion.Environment.IsDevelopment())
 aplicacion.UseHttpsRedirection();
 aplicacion.UseAuthorization();
 aplicacion.MapControllers();
+aplicacion.MapGet("/", () => Results.Ok(new
+{
+    app = "Lab8-QuispeBrahan",
+    status = "ok",
+    deployedAt = DateTime.UtcNow
+}));
 aplicacion.Run();
